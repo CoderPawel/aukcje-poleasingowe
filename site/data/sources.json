@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-10-22T12:54:52.123Z",
+  "generatedAt": "2026-10-22T13:06:09.175Z",
   "sources": [
     {
       "id": "arval",
       "name": "Arval AutoSelect",
       "url": "https://autoselect.arval.pl/",
       "ok": true,
-      "count": 345,
+      "count": 344,
       "stale": false,
       "error": null,
-      "durationMs": 1757,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 1903,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -22,9 +22,9 @@
       "count": 6112,
       "stale": false,
       "error": null,
-      "durationMs": 72687,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 10746,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": "Samochody poleasingowe PKO Leasing (z gwarancją) – sprzedaż po stałej cenie."
     },
     {
@@ -32,12 +32,12 @@
       "name": "AutoPrzetarg",
       "url": "https://autoprzetarg.pl/",
       "ok": true,
-      "count": 238,
+      "count": 245,
       "stale": false,
       "error": null,
-      "durationMs": 14093,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 15433,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -48,9 +48,9 @@
       "count": 244,
       "stale": false,
       "error": null,
-      "durationMs": 5284,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 5330,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -61,9 +61,9 @@
       "count": 296,
       "stale": false,
       "error": null,
-      "durationMs": 55561,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 56244,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": "Sklep poleasingowe.carefleet.pl odpowiadał 503 („Trwają prace serwisowe”) podczas tworzenia scrapera – jego parser oparto na archiwalnych kopiach strony. Aukcje Carefleet są dodatkowo pobierane z aukcje.efl.com.pl."
     },
     {
@@ -74,9 +74,9 @@
       "count": 89,
       "stale": false,
       "error": null,
-      "durationMs": 32152,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 34686,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -87,9 +87,9 @@
       "count": 239,
       "stale": false,
       "error": null,
-      "durationMs": 14073,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 14560,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -100,9 +100,9 @@
       "count": 0,
       "stale": false,
       "error": null,
-      "durationMs": 2280,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 2748,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": "FmLeasing.pl to portal o leasingu z tablicą ogłoszeń poleasingowych (nie prowadzi własnych aukcji). W ostatnim sprawdzeniu baza ogłoszeń była pusta – pozostała część sekcji „Poleasingowe” to linki do stron firm leasingowych."
     },
     {
@@ -110,12 +110,12 @@
       "name": "Leasy Group Aukcje",
       "url": "https://aukcje.leasygroup.pl/",
       "ok": true,
-      "count": 119,
+      "count": 121,
       "stale": false,
       "error": null,
-      "durationMs": 50848,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 50998,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": "Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty)."
     },
     {
@@ -126,9 +126,9 @@
       "count": 631,
       "stale": false,
       "error": null,
-      "durationMs": 10192,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 10313,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": "Sprzedaż po stałej cenie (brutto) – samochody poleasingowe mLeasing."
     },
     {
@@ -139,9 +139,9 @@
       "count": 306,
       "stale": false,
       "error": null,
-      "durationMs": 5079,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 5238,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -149,12 +149,12 @@
       "name": "PKO Leasing Aukcje",
       "url": "https://aukcje.pkoleasing.pl/",
       "ok": true,
-      "count": 116,
+      "count": 117,
       "stale": false,
       "error": null,
-      "durationMs": 5750,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 5466,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     },
     {
@@ -162,12 +162,12 @@
       "name": "Poleasingowe.pl",
       "url": "https://poleasingowe.pl/",
       "ok": true,
-      "count": 766,
+      "count": 773,
       "stale": false,
       "error": null,
-      "durationMs": 35589,
-      "lastRun": "2026-10-22T12:54:52.123Z",
-      "lastSuccess": "2026-10-22T12:54:52.123Z",
+      "durationMs": 39883,
+      "lastRun": "2026-10-22T13:06:09.175Z",
+      "lastSuccess": "2026-10-22T13:06:09.175Z",
       "note": null
     }
   ]
