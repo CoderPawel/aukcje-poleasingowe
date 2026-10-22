@@ -1,0 +1,20 @@
+{
+  "name": "aukcje-poleasingowe",
+  "version": "1.0.0",
+  "description": "Wyszukiwarka aut poleasingowych z wielu portali aukcyjnych (statyczna strona + scraper uruchamiany w GitHub Actions)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "scrape": "node scraper/index.mjs",
+    "scrape:one": "node scraper/index.mjs --only",
+    "serve": "node scraper/serve.mjs",
+    "test": "node --test scraper/test/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  }
+}

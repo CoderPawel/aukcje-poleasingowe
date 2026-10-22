@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260">
+  <rect width="400" height="260" fill="#e2e8f0"/>
+  <g fill="none" stroke="#94a3b8" stroke-width="8" stroke-linejoin="round">
+    <path d="M110 160l14-36a12 12 0 0 1 11-8h130a12 12 0 0 1 11 8l14 36v22a6 6 0 0 1-6 6H116a6 6 0 0 1-6-6z"/>
+    <path d="M140 116l14-24h92l14 24"/>
+  </g>
+  <g fill="#94a3b8"><circle cx="145" cy="160" r="9"/><circle cx="255" cy="160" r="9"/></g>
+  <text x="200" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#64748b">brak zdjcia</text>
+</svg>

@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aukcje Poleasingowe – wyszukiwarka aut z wielu portali</title>
+  <meta name="description" content="Wyszukiwarka samochodów poleasingowych: osobowe, dostawcze i ciężarowe z aukcji CarArena, mLeasing, PKO Leasing, EFL, Arval, Famat i innych w jednym miejscu." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    (function () {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.dataset.theme = t;
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Przejdź do wyników</a>
+
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="./" aria-label="Strona główna">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><use href="assets/icons.svg#logo" /></svg>
+        <span><strong>Aukcje</strong>Poleasingowe</span>
+      </a>
+      <form class="search" role="search" id="searchForm">
+        <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#search" /></svg>
+        <input id="q" type="search" name="q" placeholder="Szukaj: marka, model, wersja, VIN, lokalizacja…" autocomplete="off" aria-label="Szukaj pojazdów" />
+        <kbd class="search__kbd" aria-hidden="true">/</kbd>
+      </form>
+      <div class="topbar__actions">
+        <button class="icon-btn" id="favToggle" type="button" title="Pokaż tylko ulubione" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#star" /></svg>
+          <span class="badge" id="favCount" hidden>0</span>
+        </button>
+        <button class="icon-btn" id="themeToggle" type="button" title="Zmień motyw">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#theme" /></svg>
+        </button>
+        <button class="icon-btn only-mobile" id="filtersOpen" type="button" title="Filtry" aria-controls="filters">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#filter" /></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="type-tabs" id="typeTabs" aria-label="Typ pojazdu"></nav>
+  </header>
+
+  <div class="layout">
+    <aside class="filters" id="filters" aria-label="Filtry">
+      <div class="filters__head">
+        <h2>Filtry</h2>
+        <button type="button" class="link-btn" id="resetFilters">Wyczyść wszystko</button>
+        <button type="button" class="icon-btn only-mobile" id="filtersClose" title="Zamknij">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#close" /></svg>
+        </button>
+      </div>
+
+      <details class="fgroup" open>
+        <summary>Marka</summary>
+        <input class="finput" id="brandSearch" type="search" placeholder="Filtruj marki…" aria-label="Filtruj listę marek" />
+        <div class="checklist" id="brandList"></div>
+      </details>
+
+      <details class="fgroup" id="modelGroup" open hidden>
+        <summary>Model</summary>
+        <div class="checklist" id="modelList"></div>
+      </details>
+
+      <details class="fgroup" open>
+        <summary>Cena (PLN)</summary>
+        <div class="range">
+          <input class="finput" id="priceMin" type="number" inputmode="numeric" min="0" step="1000" placeholder="od" aria-label="Cena od" />
+          <span>–</span>
+          <input class="finput" id="priceMax" type="number" inputmode="numeric" min="0" step="1000" placeholder="do" aria-label="Cena do" />
+        </div>
+        <label class="check"><input type="checkbox" id="withPrice" /> tylko z podaną ceną</label>
+      </details>
+
+      <details class="fgroup" open>
+        <summary>Rok produkcji</summary>
+        <div class="range">
+          <input class="finput" id="yearMin" type="number" inputmode="numeric" min="1950" max="2100" placeholder="od" aria-label="Rok od" />
+          <span>–</span>
+          <input class="finput" id="yearMax" type="number" inputmode="numeric" min="1950" max="2100" placeholder="do" aria-label="Rok do" />
+        </div>
+      </details>
+
+      <details class="fgroup" open>
+        <summary>Przebieg (km)</summary>
+        <div class="range">
+          <input class="finput" id="kmMin" type="number" inputmode="numeric" min="0" step="10000" placeholder="od" aria-label="Przebieg od" />
+          <span>–</span>
+          <input class="finput" id="kmMax" type="number" inputmode="numeric" min="0" step="10000" placeholder="do" aria-label="Przebieg do" />
+        </div>
+      </details>
+
+      <details class="fgroup">
+        <summary>Paliwo</summary>
+        <div class="checklist" id="fuelList"></div>
+      </details>
+
+      <details class="fgroup">
+        <summary>Skrzynia biegów</summary>
+        <div class="checklist" id="gearList"></div>
+      </details>
+
+      <details class="fgroup" open>
+        <summary>Portal aukcyjny</summary>
+        <div class="checklist" id="sourceList"></div>
+      </details>
+
+      <details class="fgroup">
+        <summary>Koniec aukcji</summary>
+        <div class="chips" id="endingChips">
+          <button type="button" class="chip" data-ending="">Dowolnie</button>
+          <button type="button" class="chip" data-ending="24">24 h</button>
+          <button type="button" class="chip" data-ending="72">3 dni</button>
+          <button type="button" class="chip" data-ending="168">7 dni</button>
+        </div>
+      </details>
+
+      <details class="fgroup">
+        <summary>Status portali</summary>
+        <ul class="sources-status" id="sourcesStatus"></ul>
+      </details>
+    </aside>
+    <div class="filters-backdrop" id="filtersBackdrop" hidden></div>
+
+    <main class="content" id="results" tabindex="-1">
+      <div class="toolbar">
+        <div class="toolbar__summary" aria-live="polite">
+          <strong id="resultCount">0</strong> <span id="resultLabel">pojazdów</span>
+          <span class="muted" id="updatedAt"></span>
+        </div>
+        <div class="toolbar__controls">
+          <label class="select">
+            <span>Grupuj</span>
+            <select id="groupBy">
+              <option value="">bez grupowania</option>
+              <option value="brand">po marce</option>
+              <option value="brandModel">po marce i modelu</option>
+              <option value="type">po typie pojazdu</option>
+              <option value="source">po portalu</option>
+              <option value="year">po roku</option>
+              <option value="fuel">po paliwie</option>
+            </select>
+          </label>
+          <label class="select">
+            <span>Sortuj</span>
+            <select id="sortBy">
+              <option value="relevance">trafność / domyślnie</option>
+              <option value="priceAsc">cena: od najniższej</option>
+              <option value="priceDesc">cena: od najwyższej</option>
+              <option value="yearDesc">rok: od najnowszych</option>
+              <option value="yearAsc">rok: od najstarszych</option>
+              <option value="kmAsc">przebieg: od najmniejszego</option>
+              <option value="endAsc">koniec aukcji: najbliżej</option>
+              <option value="newest">ostatnio dodane</option>
+              <option value="name">nazwa A–Z</option>
+            </select>
+          </label>
+          <div class="segmented" role="group" aria-label="Widok">
+            <button type="button" data-view="grid" title="Kafelki" aria-pressed="true">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#grid" /></svg>
+            </button>
+            <button type="button" data-view="list" title="Lista" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#list" /></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="active-filters" id="activeFilters"></div>
+
+      <div id="output" class="output" data-view="grid">
+        <div class="skeleton-grid" aria-hidden="true">
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+          <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+        </div>
+      </div>
+
+      <div class="pager" id="pager" hidden>
+        <button type="button" class="btn" id="loadMore">Pokaż więcej</button>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>
+      Dane pobierane automatycznie z publicznych stron portali aukcyjnych i aktualizowane kilka razy dziennie.
+      Wiążące są wyłącznie informacje na stronie danego portalu – kliknij ofertę, aby przejść do oryginału.
+    </p>
+    <p class="muted">Projekt open source · <a href="https://github.com/" id="repoLink" rel="noopener">kod na GitHub</a></p>
+  </footer>
+
+  <template id="cardTpl">
+    <article class="card">
+      <a class="card__media" target="_blank" rel="noopener noreferrer">
+        <img loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="" />
+        <span class="card__type"></span>
+        <span class="card__ending" hidden></span>
+      </a>
+      <div class="card__body">
+        <div class="card__head">
+          <h3 class="card__title"><a target="_blank" rel="noopener noreferrer"></a></h3>
+          <button type="button" class="fav-btn" aria-pressed="false" title="Dodaj do ulubionych">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#star" /></svg>
+          </button>
+        </div>
+        <p class="card__version"></p>
+        <ul class="card__specs"></ul>
+        <div class="card__foot">
+          <div class="card__price"></div>
+          <a class="card__source" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
