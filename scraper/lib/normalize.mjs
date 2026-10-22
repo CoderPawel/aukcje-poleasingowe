@@ -199,7 +199,7 @@ const TRUCK_KEYWORDS = [
 const TRUCK_PATTERNS = [...TRUCK_MODELS, ...TRUCK_KEYWORDS];
 
 const TRAILER_PATTERNS = [/\bnaczep/, /\bprzyczep/, /\btrailer\b/, /\bsemi-?trailer\b/, /\bfirana\b/, /\bmega\b.*naczep/];
-const MOTO_PATTERNS = [/\bmotocykl/, /\bskuter/, /\bquad\b/, /\bmotorower/, /\bmotor\b/, /\batv\b/];
+const MOTO_PATTERNS = [/\bmotocykl/, /\bskuter/, /\bquad\b/, /\bmotorower/, /\batv\b/];
 const MACHINE_PATTERNS = [
   /\bkopark/, /\bładowark/, /\bladowark/, /\bwózek\s+widłow/, /\bwozek\s+widlow/, /\bwidlak/, /\bwidłak/,
   /\bmaszyn/, /\bciągnik\s+roln/, /\bciagnik\s+roln/, /\bkombajn/, /\bspycharka/, /\bwalec\b/, /\bmini-?kopark/,
@@ -218,7 +218,7 @@ export function typeFromCategory(category) {
   if (!category) return null;
   const c = strip(category);
   if (/naczep|przyczep|trailer/.test(c)) return 'przyczepy';
-  if (/motocykl|skuter|quad|moto\b|motor/.test(c)) return 'motocykle';
+  if (/motocykl|skuter|quad|\bmoto\b|\bmotory?\b|motorower/.test(c)) return 'motocykle';
   if (/maszyn|rolnicz|budowlan|wozki|wozek|widlow|sprzet|machine|equipment|ciagnik roln/.test(c)) return 'maszyny';
   if (/do\s*3[,.]5|<\s*3[,.]5|lcv|dostawcz|bus\b|van\b|lekkie uzytkowe|uzytkow|light commercial|furgon|n1\b/.test(c))
     return 'dostawcze';

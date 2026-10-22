@@ -56,6 +56,7 @@ test('classifyType uses model heuristics', () => {
   // Polish registration lists vans as "ciężarowy" – the model hint wins.
   assert.equal(classifyType({ title: 'Opel Combo Cargo', brand: 'Opel', category: 'Ciężarowe' }), 'dostawcze');
   assert.equal(classifyType({ title: 'Volvo XC60 B4', brand: 'Volvo' }), 'osobowe');
+  assert.equal(classifyType({ title: 'Volvo EX30 Twin Motor Performance', brand: 'Volvo' }), 'osobowe');
   assert.equal(classifyType({ title: 'Mercedes-Benz Atego 1224', brand: 'Mercedes-Benz', category: 'Ciężarowe' }), 'ciezarowe');
   assert.equal(classifyType({ title: 'Iveco Daily 70C18 kontener', brand: 'Iveco', category: 'Ciężarowe' }), 'ciezarowe');
   assert.equal(classifyType({ title: 'Iveco Daily 35S16 furgon', brand: 'Iveco', category: 'Ciężarowe' }), 'dostawcze');
