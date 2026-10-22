@@ -1,12 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  canonicalBrand,
   classifyType,
   detectBrand,
   normalizeVehicle,
   parseDate,
   parseMileage,
   parseNumber,
+  smartCase,
   typeFromCategory,
 } from '../lib/normalize.mjs';
 
@@ -38,6 +40,22 @@ test('detectBrand finds multi-word and aliased brands', () => {
   assert.equal(detectBrand('Samochód osobowy Toyota Corolla').brand, 'Toyota');
 });
 
+test('canonicalBrand cleans source brand labels', () => {
+  assert.equal(canonicalBrand('MINI [BMW]'), 'MINI');
+  assert.equal(canonicalBrand('KGM / Ssangyong'), 'SsangYong');
+  assert.equal(canonicalBrand('LAND ROVER R'), 'Land Rover');
+  assert.equal(canonicalBrand('Kaessbohrer'), 'Kässbohrer');
+  assert.equal(canonicalBrand('MERCEDES-BENZ'), 'Mercedes-Benz');
+  assert.equal(canonicalBrand('Bucher-Guyer'), 'Bucher-guyer');
+});
+
+test('smartCase tames upper-case titles only', () => {
+  assert.equal(smartCase('CITROEN JUMPER 2.0 163KM FURGON'), 'Citroen Jumper 2.0 163KM Furgon');
+  assert.equal(smartCase('MERCEDES-BENZ ACTROS 1845 LS'), 'Mercedes-Benz Actros 1845 LS');
+  assert.equal(smartCase('Skoda Octavia 2.0 TDI'), 'Skoda Octavia 2.0 TDI');
+  assert.equal(smartCase('GLC'), 'GLC');
+});
+
 test('typeFromCategory maps site categories', () => {
   assert.equal(typeFromCategory('Samochody osobowe'), 'osobowe');
   assert.equal(typeFromCategory('Dostawcze do 3,5t'), 'dostawcze');
@@ -57,6 +75,9 @@ test('classifyType uses model heuristics', () => {
   assert.equal(classifyType({ title: 'Opel Combo Cargo', brand: 'Opel', category: 'Ciężarowe' }), 'dostawcze');
   assert.equal(classifyType({ title: 'Volvo XC60 B4', brand: 'Volvo' }), 'osobowe');
   assert.equal(classifyType({ title: 'Volvo EX30 Twin Motor Performance', brand: 'Volvo' }), 'osobowe');
+  assert.equal(classifyType({ title: 'BMW Seria 2 218i aut', brand: 'BMW', bodyType: 'Van' }), 'osobowe');
+  assert.equal(classifyType({ title: 'Volkswagen Multivan 2.0 TDI', brand: 'Volkswagen', bodyType: 'Minibus' }), 'osobowe');
+  assert.equal(classifyType({ title: 'Ford Transit Custom 2.0', brand: 'Ford', bodyType: 'Van' }), 'dostawcze');
   assert.equal(classifyType({ title: 'Mercedes-Benz Atego 1224', brand: 'Mercedes-Benz', category: 'Ciężarowe' }), 'ciezarowe');
   assert.equal(classifyType({ title: 'Iveco Daily 70C18 kontener', brand: 'Iveco', category: 'Ciężarowe' }), 'ciezarowe');
   assert.equal(classifyType({ title: 'Iveco Daily 35S16 furgon', brand: 'Iveco', category: 'Ciężarowe' }), 'dostawcze');
@@ -77,4 +98,9 @@ test('normalizeVehicle produces the website schema', () => {
   assert.equal(v.mileageKm, 88000);
   assert.equal(v.fuel, 'Hybryda');
   assert.equal(v.gearbox, 'Automatyczna');
+
+  const src = { id: 't', name: 'T', url: 'https://example.com/' };
+  assert.equal(normalizeVehicle({ url: '/1', title: 'HYUNDAI i30 1.0 T-GDI Smart' }, src).title, 'Hyundai i30 1.0 T-GDI Smart');
+  assert.equal(normalizeVehicle({ url: '/2', title: 'SKODA OCTAVIA KOMBI' }, src).title, 'Škoda Octavia Kombi');
+  assert.equal(normalizeVehicle({ url: '/3', title: 'BMW X5 xDrive30d' }, src).title, 'BMW X5 xDrive30d');
 });

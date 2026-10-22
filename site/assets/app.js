@@ -94,8 +94,10 @@ const MODEL_PREFIXES = [
   'range rover', 'grand cherokee', 'proace city', 'grand c4', 'grand scenic', 'land cruiser', 'santa fe',
   'space star', 'model 3', 'model y', 'model s', 'model x', 'id. buzz', 'e-tron gt', 'mustang mach-e',
   'c4 picasso', 'c4 cactus', 'c-max', 'grand c-max', 's-max', 'b-max', 'x-trail', 'cx-5', 'cx-30', 'cx-3', 'cx-60',
-  'mx-5', 'c-hr', 'rav4', 'combo life', 'berlingo van', 'partner tepee', 'kangoo express',
+  'mx-5', 'c-hr', 'rav4',
 ];
+
+const capitalize = (s) => (/^[A-ZĄĆĘŁŃÓŚŹŻ-]{4,}$/.test(s) ? s.charAt(0) + s.slice(1).toLowerCase() : s.charAt(0).toUpperCase() + s.slice(1));
 
 /** Collapses detailed model strings ("Octavia 2.0 TDI", "320d xDrive") into a family used for grouping. */
 function modelFamily(v) {
@@ -103,7 +105,7 @@ function modelFamily(v) {
   const m = (v.model || '').trim();
   if (!m) return 'Inny model';
   const f = fold(m);
-  for (const p of MODEL_PREFIXES) if (f.startsWith(p)) return m.slice(0, p.length);
+  for (const p of MODEL_PREFIXES) if (f.startsWith(p)) return m.slice(0, p.length).split(' ').map(capitalize).join(' ');
   const first = m.split(/[\s,/(]+/)[0];
   if (v.brand === 'BMW') {
     const s = /^(\d)\d{2}[a-z]*$/i.exec(first) || /^seria$/i.test(first) && /^seria\s+(\d)/i.exec(m);
@@ -119,7 +121,7 @@ function modelFamily(v) {
       return /^[ABCEGSVX]$/.test(l) ? `Klasa ${l}` : l;
     }
   }
-  return first.charAt(0).toUpperCase() + first.slice(1);
+  return capitalize(first);
 }
 
 function prepare(list) {

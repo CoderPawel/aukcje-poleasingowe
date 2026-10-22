@@ -79,7 +79,29 @@ const BRANDS = [
   ['Wielton', ['wielton']],
   ['Knapen', ['knapen']],
   ['Fliegl', ['fliegl']],
-  ['Kässbohrer', ['kassbohrer', 'kässbohrer']],
+  ['Kässbohrer', ['kassbohrer', 'kässbohrer', 'kaessbohrer']],
+  ['CFMoto', ['cfmoto', 'cf moto', 'cf-moto']],
+  ['Zontes', ['zontes']],
+  ['Malaguti', ['malaguti']],
+  ['Steyr', ['steyr']],
+  ['Bürstner', ['burstner', 'bürstner']],
+  ['Benimar', ['benimar']],
+  ['Hymer', ['hymer']],
+  ['Knaus', ['knaus']],
+  ['CIMC', ['cimc vehicles', 'cimc']],
+  ['Kverneland', ['kverneland']],
+  ['Holmer', ['holmer']],
+  ['Bednar', ['bednar']],
+  ['Basak', ['basak']],
+  ['Lemken', ['lemken']],
+  ['Amazone', ['amazone']],
+  ['Pöttinger', ['pottinger', 'pöttinger']],
+  ['Sennebogen', ['sennebogen']],
+  ['Terex', ['terex']],
+  ['Langendorf', ['langendorf']],
+  ['Blyss', ['blyss']],
+  ['Boro', ['boro']],
+  ['Tank-Service', ['tank-service', 'tank service']],
   ['Schwarzmüller', ['schwarzmuller', 'schwarzmüller']],
   ['Lamberet', ['lamberet']],
   ['Chereau', ['chereau']],
@@ -155,14 +177,16 @@ const TRUCK_BRANDS = new Set(['DAF', 'Scania', 'Renault Trucks', 'Tatra']);
 const TRAILER_BRANDS = new Set([
   'Krone', 'Schmitz Cargobull', 'Kögel', 'Wielton', 'Knapen', 'Fliegl', 'Kässbohrer', 'Schwarzmüller',
   'Lamberet', 'Chereau', 'Neptun', 'Temared', 'Niewiadów', 'Brenderup', 'Humbaur', 'Böckmann',
-  'Bodex', 'Wolf', 'Faymonville', 'Goldhofer', 'Kempf', 'Feber', 'Kel-Berg', 'Sanok',
+  'Bodex', 'Wolf', 'Faymonville', 'Goldhofer', 'Kempf', 'Feber', 'Kel-Berg', 'Sanok', 'CIMC', 'Langendorf',
+  'Blyss', 'Boro', 'Tank-Service',
 ]);
-const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa']);
+const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa', 'CFMoto', 'Zontes', 'Malaguti']);
 const MACHINE_BRANDS = new Set([
   'JCB', 'Caterpillar', 'Bobcat', 'Komatsu', 'Volvo CE', 'Manitou', 'Linde', 'Still', 'Jungheinrich',
   'John Deere', 'Claas', 'New Holland', 'Case', 'Kubota', 'Zetor', 'Deutz-Fahr', 'Fendt', 'Massey Ferguson',
   'Ursus', 'Hyundai CE', 'Doosan', 'Liebherr', 'Takeuchi', 'Yanmar', 'Hitachi', 'Hyster', 'Merlo', 'Ausa',
-  'Wacker Neuson', 'Kramer', 'Sany', 'Haulotte', 'Genie', 'JLG', 'Pronar',
+  'Wacker Neuson', 'Kramer', 'Sany', 'Haulotte', 'Genie', 'JLG', 'Pronar', 'Steyr', 'Kverneland', 'Holmer',
+  'Bednar', 'Basak', 'Lemken', 'Amazone', 'Pöttinger', 'Sennebogen', 'Terex',
 ]);
 
 const VAN_MODELS = [
@@ -233,13 +257,15 @@ export function typeFromCategory(category) {
  */
 export function classifyType({ category, title = '', brand, model = '', bodyType = '' }) {
   const fromCat = typeFromCategory(category);
-  const text = strip(`${brand ?? ''} ${model ?? ''} ${title ?? ''} ${bodyType ?? ''}`);
+  // "Van"/"Minibus" as a body type usually means an MPV (Touran, Active Tourer, Multivan), so it is not a van hint.
+  const body = /^\s*(van|minivan|mpv|minibus|bus)\s*$/i.test(bodyType ?? '') ? '' : bodyType ?? '';
+  const text = strip(`${brand ?? ''} ${model ?? ''} ${title ?? ''} ${body}`);
   // Sources often tag all N1 vans as "ciężarowe" (Polish registration class), so refine with model hints.
   if (fromCat === 'ciezarowe' && VAN_MODELS.some((r) => r.test(text)) && !TRUCK_MODELS.some((r) => r.test(text)))
     return 'dostawcze';
   if (fromCat) return fromCat;
 
-  const bodyCat = typeFromCategory(bodyType);
+  const bodyCat = typeFromCategory(body);
   if (bodyCat && bodyCat !== 'osobowe') return bodyCat;
 
   if (brand && TRAILER_BRANDS.has(brand)) return 'przyczepy';
@@ -276,11 +302,17 @@ export function detectBrand(title) {
   return { brand: null, rest: raw };
 }
 
+/** Maps a brand label from a source ("MINI [BMW]", "KGM / SsangYong", "LAND ROVER R") to a canonical name. */
 export function canonicalBrand(brand) {
-  if (!brand) return null;
-  const t = strip(cleanText(brand));
-  for (const [alias, name] of BRAND_ALIASES) if (strip(alias) === t) return name;
-  return titleCase(cleanText(brand));
+  const cleaned = cleanText(String(brand ?? '').replace(/[[(].*?[\])]/g, ''));
+  if (!cleaned) return null;
+  for (const part of [cleaned, ...cleaned.split('/').map(cleanText)]) {
+    const t = strip(part);
+    for (const [alias, name] of BRAND_ALIASES) if (strip(alias) === t) return name;
+  }
+  const prefix = detectBrand(cleaned);
+  if (prefix.brand && strip(cleaned).startsWith(strip(prefix.brand).split(' ')[0])) return prefix.brand;
+  return titleCase(cleaned);
 }
 
 function escapeRe(s) {
@@ -293,6 +325,21 @@ export function titleCase(s) {
     .split(/\s+/)
     .map((w) => (w.length <= 3 && w === w.toUpperCase() ? w : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()))
     .join(' ');
+}
+
+/**
+ * Converts SHOUTED titles ("SKODA OCTAVIA 2.0 TDI KOMBI") to "Skoda Octavia 2.0 TDI Kombi".
+ * Short words and tokens with digits (TDI, 4X4, 163KM, XC60) are kept as they are.
+ */
+export function smartCase(s) {
+  const t = cleanText(s);
+  const letters = t.replace(/[^A-Za-zÀ-žĄĆĘŁŃÓŚŹŻąćęłńóśźż]/g, '');
+  if (letters.length < 4) return t;
+  const upper = letters.replace(/[^A-ZÀ-ÞĄĆĘŁŃÓŚŹŻ]/g, '').length;
+  if (upper / letters.length < 0.8) return t;
+  return t.replace(/[A-Za-zÀ-žĄĆĘŁŃÓŚŹŻąćęłńóśźż0-9]+/g, (w) =>
+    w.length <= 3 || /\d/.test(w) ? w : w.charAt(0) + w.slice(1).toLowerCase(),
+  );
 }
 
 export function cleanText(s) {
@@ -436,15 +483,19 @@ export function normalizeVehicle(raw, source) {
   const url = absUrl(raw.url, source.url) || source.url;
   const id = `${source.id}:${raw.id ?? hash(url + '|' + title)}`;
 
+  let displayTitle = smartCase(title);
+  if (brand && displayTitle.length > brand.length && strip(displayTitle.slice(0, brand.length)) === strip(brand) && /^[^a-z]+$/.test(title.slice(0, brand.length)))
+    displayTitle = brand + displayTitle.slice(brand.length);
+
   return {
     id,
     source: source.id,
     sourceName: source.name,
     url,
-    title: title || [brand, model].filter(Boolean).join(' ') || 'Pojazd',
+    title: displayTitle || [brand, model].filter(Boolean).join(' ') || 'Pojazd',
     brand: brand || 'Inna',
-    model: model || null,
-    version: cleanText(raw.version) || null,
+    model: smartCase(model) || null,
+    version: smartCase(raw.version) || null,
     type,
     year,
     mileageKm,
@@ -452,7 +503,7 @@ export function normalizeVehicle(raw, source) {
     gearbox: normalizeGearbox(raw.gearbox),
     engineCcm: parseNumber(raw.engineCcm) || null,
     powerKm: parseNumber(raw.powerKm) || (raw.powerKw ? Math.round(parseNumber(raw.powerKw) * 1.36) : null),
-    bodyType: cleanText(raw.bodyType) || null,
+    bodyType: smartCase(raw.bodyType) || null,
     price: price && price > 0 ? Math.round(price) : null,
     priceGross: raw.priceGross ?? null,
     currency: raw.currency || 'PLN',

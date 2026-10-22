@@ -163,7 +163,9 @@ async function main() {
   all.sort((a, b) => (a.brand || '').localeCompare(b.brand || '', 'pl') || (a.model || '').localeCompare(b.model || '', 'pl'));
   statuses.sort((a, b) => a.name.localeCompare(b.name, 'pl'));
 
-  await fs.writeFile(path.join(DATA_DIR, 'vehicles.json'), JSON.stringify({ generatedAt: now, count: all.length, vehicles: all }));
+  // Empty fields are dropped to keep the file small; the website treats missing and null the same way.
+  const compact = all.map((v) => Object.fromEntries(Object.entries(v).filter(([k, val]) => val != null && val !== '' && k !== 'lastSeen')));
+  await fs.writeFile(path.join(DATA_DIR, 'vehicles.json'), JSON.stringify({ generatedAt: now, count: compact.length, vehicles: compact }));
   await fs.writeFile(path.join(DATA_DIR, 'sources.json'), JSON.stringify({ generatedAt: now, sources: statuses }, null, 2));
 
   console.log(`\nZapisano ${all.length} pojazdów.`);
