@@ -129,8 +129,9 @@ async function main() {
     const prevById = new Map(prevList.map((v) => [v.id, v]));
     list = list.map((v) => ({ ...v, firstSeen: prevById.get(v.id)?.firstSeen ?? now }));
 
+    const emptyOk = status.ok && list.length === 0 && source.allowEmpty;
     let stale = false;
-    if (!status.ok || list.length === 0) {
+    if (!emptyOk && (!status.ok || list.length === 0)) {
       const lastOk = prev?.lastSuccess ? Date.parse(prev.lastSuccess) : 0;
       if (prevList.length && Date.now() - lastOk < STALE_KEEP_MS) {
         list = prevList;
@@ -142,13 +143,13 @@ async function main() {
       id: source.id,
       name: source.name,
       url: source.url,
-      ok: status.ok && vehicles.length > 0,
+      ok: status.ok && (vehicles.length > 0 || emptyOk),
       count: list.length,
       stale,
-      error: status.error || (status.ok && vehicles.length === 0 ? 'Brak ofert lub zmieniła się struktura strony' : null),
+      error: status.error || (status.ok && vehicles.length === 0 && !emptyOk ? 'Brak ofert lub zmieniła się struktura strony' : null),
       durationMs: status.durationMs,
       lastRun: now,
-      lastSuccess: status.ok && vehicles.length > 0 ? now : prev?.lastSuccess ?? null,
+      lastSuccess: status.ok && (vehicles.length > 0 || emptyOk) ? now : prev?.lastSuccess ?? null,
       note: source.note ?? null,
     });
   }

@@ -123,22 +123,46 @@ const BRANDS = [
   ['Brenderup', ['brenderup']],
   ['Humbaur', ['humbaur']],
   ['Böckmann', ['bockmann', 'böckmann']],
+  ['Bodex', ['bodex']],
+  ['Wolf', ['wolf']],
+  ['Faymonville', ['faymonville']],
+  ['Goldhofer', ['goldhofer']],
+  ['Kempf', ['kempf']],
+  ['Meiller', ['meiller']],
+  ['Feber', ['feber']],
+  ['Kel-Berg', ['kel-berg', 'kelberg']],
+  ['Pronar', ['pronar']],
+  ['Sanok', ['sanok', 'autosan sanok']],
+  ['Tatra', ['tatra']],
+  ['Mitsubishi Fuso', ['mitsubishi fuso', 'fuso']],
+  ['Hitachi', ['hitachi']],
+  ['Hyster', ['hyster']],
+  ['Merlo', ['merlo']],
+  ['Ausa', ['ausa']],
+  ['Wacker Neuson', ['wacker neuson', 'wacker']],
+  ['Kramer', ['kramer']],
+  ['Sany', ['sany']],
+  ['Haulotte', ['haulotte']],
+  ['Genie', ['genie']],
+  ['JLG', ['jlg']],
 ];
 
 const BRAND_ALIASES = BRANDS.flatMap(([name, aliases]) => aliases.map((a) => [a, name])).sort(
   (a, b) => b[0].length - a[0].length,
 );
 
-const TRUCK_BRANDS = new Set(['DAF', 'Scania', 'Renault Trucks']);
+const TRUCK_BRANDS = new Set(['DAF', 'Scania', 'Renault Trucks', 'Tatra']);
 const TRAILER_BRANDS = new Set([
   'Krone', 'Schmitz Cargobull', 'Kögel', 'Wielton', 'Knapen', 'Fliegl', 'Kässbohrer', 'Schwarzmüller',
   'Lamberet', 'Chereau', 'Neptun', 'Temared', 'Niewiadów', 'Brenderup', 'Humbaur', 'Böckmann',
+  'Bodex', 'Wolf', 'Faymonville', 'Goldhofer', 'Kempf', 'Feber', 'Kel-Berg', 'Sanok',
 ]);
 const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa']);
 const MACHINE_BRANDS = new Set([
   'JCB', 'Caterpillar', 'Bobcat', 'Komatsu', 'Volvo CE', 'Manitou', 'Linde', 'Still', 'Jungheinrich',
   'John Deere', 'Claas', 'New Holland', 'Case', 'Kubota', 'Zetor', 'Deutz-Fahr', 'Fendt', 'Massey Ferguson',
-  'Ursus', 'Hyundai CE', 'Doosan', 'Liebherr', 'Takeuchi', 'Yanmar',
+  'Ursus', 'Hyundai CE', 'Doosan', 'Liebherr', 'Takeuchi', 'Yanmar', 'Hitachi', 'Hyster', 'Merlo', 'Ausa',
+  'Wacker Neuson', 'Kramer', 'Sany', 'Haulotte', 'Genie', 'JLG', 'Pronar',
 ]);
 
 const VAN_MODELS = [
@@ -153,7 +177,7 @@ const VAN_MODELS = [
   /\btge\b/, /\bhilux\b/, /\branger\b(?!\s*rover)/, /\bl200\b/, /\bnavara\b/, /\bamarok\b/, /\bd-?max\b/,
   /\bdeliver\s?\d/, /\bedeliver/, /\be-?nv200\b/, /\bberlingo\b.*\b(van|furgon|cargo|worker|l1|l2)\b/,
   /\bcaddy\b.*\b(cargo|furgon|van|maxi cargo)\b/, /\btransit connect\b/, /\btransit courier\b/, /\btransit custom\b/,
-  /\bproace city\b(?!\s*verso)/, /\be-?transit\b/, /\bcanter\b/, /\bmaxity\b/, /\batego\b/, /\bmovano\b/,
+  /\bproace city\b(?!\s*verso)/, /\be-?transit\b/, /\bcanter\b/, /\bmaxity\b/, /\bmovano\b/,
   /\bpro ?ace max\b/, /\bpartner\b/, /\bkangoo\s*van\b/, /\bberlingo\s*van\b/, /\bdoblo\s*cargo\b/,
   /\bpanel\s*van\b/, /\bfurgon\b/, /\bfurgonetka\b/, /\bdostawcz/, /\bbrygad[oó]wk/, /\bdoka\b/,
   /\bkontener\b/, /\bskrzyni/, /\bplandek/, /\bchłodni/, /\bchlodni/, /\bizoterm/, /\bkiper\b/,
@@ -161,7 +185,9 @@ const VAN_MODELS = [
 ];
 
 const TRUCK_MODELS = [
-  /\bactros\b/, /\barocs\b/, /\bantos\b/, /\baxor\b/, /\beconic\b/,
+  /\bactros\b/, /\barocs\b/, /\bantos\b/, /\baxor\b/, /\batego\b/, /\beconic\b/,
+  // Iveco Daily above 3.5 t DMC: "70C18", "Daily 7.0t", "65C".
+  /\bdaily\b.*\b(4[0-9]|5[0-9]|6[0-9]|7[0-2])c\d*/, /\bdaily\b.*\b([4-7]([.,]\d)?)\s?t\b/,
   /\btg[lmsx]\b/, /\bvolvo\s+(fh|fm|fmx|fl|fe)\d*\b/, /\bstralis\b/, /\beurocargo\b/, /\bs-?way\b/, /\btrakker\b/,
   /\bx-?way\b/, /\bdaf\s+(xf|cf|lf|xg\+?)\b/, /\brenault\s+(t|c|k|d)\s+(wide|range|\d)/, /\brenault\s+premium\b/,
 ];

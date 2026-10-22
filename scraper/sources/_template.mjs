@@ -1,7 +1,9 @@
 /**
  * Template for a source module. Files starting with "_" are not loaded by the runner.
  *
- * A source exports default { id, name, url, scrape, note?, delayMs? }.
+ * A source exports default { id, name, url, scrape, note?, delayMs?, allowEmpty? }.
+ * allowEmpty: true means an empty result is legitimate (otherwise it is reported as a probable breakage
+ * and the previous data is kept); such a module should throw when it doesn't recognise the page.
  * scrape({ http, log, maxPages }) must resolve to an array of raw vehicle records:
  *
  * {

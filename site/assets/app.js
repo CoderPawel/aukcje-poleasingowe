@@ -567,7 +567,7 @@ function renderSources(counts) {
   $('#sourcesStatus').replaceChildren(...sources.map((s) => {
     const cls = s.ok ? '' : s.stale ? 'warn' : 'err';
     const info = s.ok
-      ? `${fmtInt.format(s.count)} ofert`
+      ? s.count ? `${fmtInt.format(s.count)} ${plural(s.count, 'oferta', 'oferty', 'ofert')}` : 'brak aktualnych ofert'
       : s.stale
         ? `dane z ${s.lastSuccess ? fmtDate.format(new Date(s.lastSuccess)) : 'poprzedniej aktualizacji'}`
         : s.error || 'niedostępny';
