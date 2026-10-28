@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T01:09:53.149Z",
+  "generatedAt": "2026-10-28T04:55:29.290Z",
   "sources": [
     {
       "id": "arval",
@@ -9,9 +9,9 @@
       "count": 350,
       "stale": false,
       "error": null,
-      "durationMs": 1746,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 1923,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -19,12 +19,12 @@
       "name": "Automarket",
       "url": "https://automarket.pl/samochody-poleasingowe",
       "ok": true,
-      "count": 6228,
+      "count": 6222,
       "stale": false,
       "error": null,
-      "durationMs": 166548,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 90444,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": "Samochody poleasingowe PKO Leasing (z gwarancją) – sprzedaż po stałej cenie."
     },
     {
@@ -35,9 +35,9 @@
       "count": 252,
       "stale": false,
       "error": null,
-      "durationMs": 17476,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 17045,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -48,9 +48,9 @@
       "count": 71,
       "stale": false,
       "error": null,
-      "durationMs": 10527,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 2446,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -61,9 +61,9 @@
       "count": 56,
       "stale": false,
       "error": null,
-      "durationMs": 22908,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 23342,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": "Sklep poleasingowe.carefleet.pl odpowiadał 503 („Trwają prace serwisowe”) podczas tworzenia scrapera – jego parser oparto na archiwalnych kopiach strony. Aukcje Carefleet są dodatkowo pobierane z aukcje.efl.com.pl."
     },
     {
@@ -74,9 +74,9 @@
       "count": 86,
       "stale": false,
       "error": null,
-      "durationMs": 32309,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 34302,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -87,9 +87,9 @@
       "count": 228,
       "stale": false,
       "error": null,
-      "durationMs": 12899,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 14589,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -100,9 +100,9 @@
       "count": 0,
       "stale": false,
       "error": null,
-      "durationMs": 20018,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 2627,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": "FmLeasing.pl to portal o leasingu z tablicą ogłoszeń poleasingowych (nie prowadzi własnych aukcji). W ostatnim sprawdzeniu baza ogłoszeń była pusta – pozostała część sekcji „Poleasingowe” to linki do stron firm leasingowych."
     },
     {
@@ -113,9 +113,9 @@
       "count": 138,
       "stale": false,
       "error": null,
-      "durationMs": 54225,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 54242,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": "Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty)."
     },
     {
@@ -126,9 +126,9 @@
       "count": 629,
       "stale": false,
       "error": null,
-      "durationMs": 10208,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 10547,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": "Sprzedaż po stałej cenie (brutto) – samochody poleasingowe mLeasing."
     },
     {
@@ -139,9 +139,9 @@
       "count": 290,
       "stale": false,
       "error": null,
-      "durationMs": 4884,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 5583,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -152,9 +152,9 @@
       "count": 121,
       "stale": false,
       "error": null,
-      "durationMs": 9488,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 5005,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     },
     {
@@ -165,9 +165,9 @@
       "count": 890,
       "stale": false,
       "error": null,
-      "durationMs": 61532,
-      "lastRun": "2026-10-28T01:09:53.149Z",
-      "lastSuccess": "2026-10-28T01:09:53.149Z",
+      "durationMs": 46637,
+      "lastRun": "2026-10-28T04:55:29.290Z",
+      "lastSuccess": "2026-10-28T04:55:29.290Z",
       "note": null
     }
   ]
