@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-27T20:45:52.425Z",
+  "generatedAt": "2026-10-28T01:09:53.149Z",
   "sources": [
     {
       "id": "arval",
@@ -9,9 +9,9 @@
       "count": 350,
       "stale": false,
       "error": null,
-      "durationMs": 1484,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 1746,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -19,12 +19,12 @@
       "name": "Automarket",
       "url": "https://automarket.pl/samochody-poleasingowe",
       "ok": true,
-      "count": 6225,
+      "count": 6228,
       "stale": false,
       "error": null,
-      "durationMs": 70244,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 166548,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": "Samochody poleasingowe PKO Leasing (z gwarancją) – sprzedaż po stałej cenie."
     },
     {
@@ -35,9 +35,9 @@
       "count": 252,
       "stale": false,
       "error": null,
-      "durationMs": 15045,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 17476,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -48,9 +48,9 @@
       "count": 71,
       "stale": false,
       "error": null,
-      "durationMs": 7461,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 10527,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -58,12 +58,12 @@
       "name": "Carefleet Poleasingowe",
       "url": "https://poleasingowe.carefleet.pl/",
       "ok": true,
-      "count": 57,
+      "count": 56,
       "stale": false,
       "error": null,
-      "durationMs": 21854,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 22908,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": "Sklep poleasingowe.carefleet.pl odpowiadał 503 („Trwają prace serwisowe”) podczas tworzenia scrapera – jego parser oparto na archiwalnych kopiach strony. Aukcje Carefleet są dodatkowo pobierane z aukcje.efl.com.pl."
     },
     {
@@ -74,9 +74,9 @@
       "count": 86,
       "stale": false,
       "error": null,
-      "durationMs": 31089,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 32309,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -87,9 +87,9 @@
       "count": 228,
       "stale": false,
       "error": null,
-      "durationMs": 12008,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 12899,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -100,9 +100,9 @@
       "count": 0,
       "stale": false,
       "error": null,
-      "durationMs": 2144,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 20018,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": "FmLeasing.pl to portal o leasingu z tablicą ogłoszeń poleasingowych (nie prowadzi własnych aukcji). W ostatnim sprawdzeniu baza ogłoszeń była pusta – pozostała część sekcji „Poleasingowe” to linki do stron firm leasingowych."
     },
     {
@@ -113,9 +113,9 @@
       "count": 138,
       "stale": false,
       "error": null,
-      "durationMs": 52068,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 54225,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": "Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty)."
     },
     {
@@ -126,9 +126,9 @@
       "count": 629,
       "stale": false,
       "error": null,
-      "durationMs": 10090,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 10208,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": "Sprzedaż po stałej cenie (brutto) – samochody poleasingowe mLeasing."
     },
     {
@@ -139,9 +139,9 @@
       "count": 290,
       "stale": false,
       "error": null,
-      "durationMs": 5944,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 4884,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -149,12 +149,12 @@
       "name": "PKO Leasing Aukcje",
       "url": "https://aukcje.pkoleasing.pl/",
       "ok": true,
-      "count": 112,
+      "count": 121,
       "stale": false,
       "error": null,
-      "durationMs": 4178,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 9488,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     },
     {
@@ -162,12 +162,12 @@
       "name": "Poleasingowe.pl",
       "url": "https://poleasingowe.pl/",
       "ok": true,
-      "count": 877,
+      "count": 890,
       "stale": false,
       "error": null,
-      "durationMs": 43312,
-      "lastRun": "2026-10-27T20:45:52.425Z",
-      "lastSuccess": "2026-10-27T20:45:52.425Z",
+      "durationMs": 61532,
+      "lastRun": "2026-10-28T01:09:53.149Z",
+      "lastSuccess": "2026-10-28T01:09:53.149Z",
       "note": null
     }
   ]
