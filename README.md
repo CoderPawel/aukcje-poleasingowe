@@ -12,6 +12,7 @@ Dane są pobierane automatycznie przez GitHub Actions (domyślnie co 4 godziny) 
 | Portal | Moduł |
 | --- | --- |
 | [CarArena](https://cararena.pl/) | `scraper/sources/cararena.mjs` |
+| [Dawro – aukcje pojazdów](https://www.dawro.pl/aukcje) | `scraper/sources/dawro.mjs` |
 | [Poleasingowe.pl](https://poleasingowe.pl/) | `scraper/sources/poleasingowe.mjs` |
 | [FM Leasing](https://www.fmleasing.pl/) | `scraper/sources/fmleasing.mjs` |
 | [mLeasing – portal aukcyjny](https://portalaukcyjny.mleasing.pl/) | `scraper/sources/mleasing.mjs` |
