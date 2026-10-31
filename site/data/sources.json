@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T01:08:03.889Z",
+  "generatedAt": "2026-10-31T04:54:02.224Z",
   "sources": [
     {
       "id": "arval",
@@ -9,9 +9,9 @@
       "count": 341,
       "stale": false,
       "error": null,
-      "durationMs": 1876,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 1718,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -19,12 +19,12 @@
       "name": "Automarket",
       "url": "https://automarket.pl/samochody-poleasingowe",
       "ok": true,
-      "count": 6208,
+      "count": 6191,
       "stale": false,
       "error": null,
-      "durationMs": 106001,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 93039,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": "Samochody poleasingowe PKO Leasing (z gwarancją) – sprzedaż po stałej cenie."
     },
     {
@@ -35,8 +35,8 @@
       "count": 253,
       "stale": true,
       "error": "HTTP 503 https://autoprzetarg.pl/kategoria/Pojazdy1",
-      "durationMs": 13521,
-      "lastRun": "2026-10-31T01:08:03.889Z",
+      "durationMs": 15548,
+      "lastRun": "2026-10-31T04:54:02.224Z",
       "lastSuccess": "2026-10-30T16:56:11.528Z",
       "note": null
     },
@@ -48,9 +48,9 @@
       "count": 271,
       "stale": false,
       "error": null,
-      "durationMs": 6297,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 5903,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -61,9 +61,9 @@
       "count": 284,
       "stale": false,
       "error": null,
-      "durationMs": 55297,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 54560,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": "Sklep poleasingowe.carefleet.pl odpowiadał 503 („Trwają prace serwisowe”) podczas tworzenia scrapera – jego parser oparto na archiwalnych kopiach strony. Aukcje Carefleet są dodatkowo pobierane z aukcje.efl.com.pl."
     },
     {
@@ -74,9 +74,9 @@
       "count": 29,
       "stale": false,
       "error": null,
-      "durationMs": 13776,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 17518,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -87,9 +87,9 @@
       "count": 89,
       "stale": false,
       "error": null,
-      "durationMs": 31930,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 33843,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -100,9 +100,9 @@
       "count": 225,
       "stale": false,
       "error": null,
-      "durationMs": 13312,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 13054,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -113,9 +113,9 @@
       "count": 0,
       "stale": false,
       "error": null,
-      "durationMs": 2426,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 2556,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": "FmLeasing.pl to portal o leasingu z tablicą ogłoszeń poleasingowych (nie prowadzi własnych aukcji). W ostatnim sprawdzeniu baza ogłoszeń była pusta – pozostała część sekcji „Poleasingowe” to linki do stron firm leasingowych."
     },
     {
@@ -126,9 +126,9 @@
       "count": 153,
       "stale": false,
       "error": null,
-      "durationMs": 60907,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 61251,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": "Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty)."
     },
     {
@@ -139,9 +139,9 @@
       "count": 645,
       "stale": false,
       "error": null,
-      "durationMs": 10697,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 10995,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": "Sprzedaż po stałej cenie (brutto) – samochody poleasingowe mLeasing."
     },
     {
@@ -152,9 +152,9 @@
       "count": 317,
       "stale": false,
       "error": null,
-      "durationMs": 6642,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 5468,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -165,9 +165,9 @@
       "count": 127,
       "stale": false,
       "error": null,
-      "durationMs": 8262,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 5048,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     },
     {
@@ -178,9 +178,9 @@
       "count": 909,
       "stale": false,
       "error": null,
-      "durationMs": 71813,
-      "lastRun": "2026-10-31T01:08:03.889Z",
-      "lastSuccess": "2026-10-31T01:08:03.889Z",
+      "durationMs": 46297,
+      "lastRun": "2026-10-31T04:54:02.224Z",
+      "lastSuccess": "2026-10-31T04:54:02.224Z",
       "note": null
     }
   ]
