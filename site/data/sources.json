@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T01:17:25.086Z",
+  "generatedAt": "2026-11-02T05:11:08.453Z",
   "sources": [
     {
       "id": "arval",
@@ -9,9 +9,9 @@
       "count": 342,
       "stale": false,
       "error": null,
-      "durationMs": 1559,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 1629,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -22,9 +22,9 @@
       "count": 6182,
       "stale": false,
       "error": null,
-      "durationMs": 97440,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 85146,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": "Samochody poleasingowe PKO Leasing (z gwarancją) – sprzedaż po stałej cenie."
     },
     {
@@ -34,8 +34,8 @@
       "count": 253,
       "stale": true,
       "error": "Brak ofert lub zmieniła się struktura strony",
-      "durationMs": 2190,
-      "lastRun": "2026-11-02T01:17:25.086Z",
+      "durationMs": 2368,
+      "lastRun": "2026-11-02T05:11:08.453Z",
       "lastSuccess": "2026-10-30T16:56:11.528Z",
       "note": null
     },
@@ -47,9 +47,9 @@
       "count": 271,
       "stale": false,
       "error": null,
-      "durationMs": 6144,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 7223,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -60,22 +60,22 @@
       "count": 283,
       "stale": false,
       "error": null,
-      "durationMs": 59637,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 53091,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": "Sklep poleasingowe.carefleet.pl odpowiadał 503 („Trwają prace serwisowe”) podczas tworzenia scrapera – jego parser oparto na archiwalnych kopiach strony. Aukcje Carefleet są dodatkowo pobierane z aukcje.efl.com.pl."
     },
     {
       "id": "dawro",
       "name": "Dawro Aukcje",
       "url": "https://www.dawro.pl/",
-      "ok": false,
+      "ok": true,
       "count": 29,
-      "stale": true,
-      "error": "fetch failed",
-      "durationMs": 43430,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-01T20:46:19.037Z",
+      "stale": false,
+      "error": null,
+      "durationMs": 17398,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -86,9 +86,9 @@
       "count": 89,
       "stale": false,
       "error": null,
-      "durationMs": 32962,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 32404,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -99,9 +99,9 @@
       "count": 225,
       "stale": false,
       "error": null,
-      "durationMs": 11862,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 11410,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -112,9 +112,9 @@
       "count": 0,
       "stale": false,
       "error": null,
-      "durationMs": 2153,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 2197,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": "FmLeasing.pl to portal o leasingu z tablicą ogłoszeń poleasingowych (nie prowadzi własnych aukcji). W ostatnim sprawdzeniu baza ogłoszeń była pusta – pozostała część sekcji „Poleasingowe” to linki do stron firm leasingowych."
     },
     {
@@ -125,9 +125,9 @@
       "count": 153,
       "stale": false,
       "error": null,
-      "durationMs": 60474,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 59656,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": "Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty)."
     },
     {
@@ -138,9 +138,9 @@
       "count": 645,
       "stale": false,
       "error": null,
-      "durationMs": 10653,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 10682,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": "Sprzedaż po stałej cenie (brutto) – samochody poleasingowe mLeasing."
     },
     {
@@ -151,9 +151,9 @@
       "count": 318,
       "stale": false,
       "error": null,
-      "durationMs": 4963,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 6434,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -164,9 +164,9 @@
       "count": 127,
       "stale": false,
       "error": null,
-      "durationMs": 5976,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 6915,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     },
     {
@@ -177,9 +177,9 @@
       "count": 909,
       "stale": false,
       "error": null,
-      "durationMs": 120247,
-      "lastRun": "2026-11-02T01:17:25.086Z",
-      "lastSuccess": "2026-11-02T01:17:25.086Z",
+      "durationMs": 87016,
+      "lastRun": "2026-11-02T05:11:08.453Z",
+      "lastSuccess": "2026-11-02T05:11:08.453Z",
       "note": null
     }
   ]
