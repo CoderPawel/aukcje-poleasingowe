@@ -32,7 +32,9 @@ const BRANDS = [
   ['Lincoln', ['lincoln']],
   ['RAM', ['ram']],
   ['Buick', ['buick']],
-  ['Hyundai', ['hyundai']],
+  ['Hyundai', ['hyundai', 'huyndai', 'hyundia']],
+  ['Triumph', ['triumph']],
+  ['Gas Gas', ['gas gas', 'gasgas']],
   ['Infiniti', ['infiniti']],
   ['Isuzu', ['isuzu']],
   ['Iveco', ['iveco']],
@@ -185,7 +187,7 @@ const TRAILER_BRANDS = new Set([
   'Bodex', 'Wolf', 'Faymonville', 'Goldhofer', 'Kempf', 'Feber', 'Kel-Berg', 'Sanok', 'CIMC', 'Langendorf',
   'Blyss', 'Boro', 'Tank-Service',
 ]);
-const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa', 'CFMoto', 'Zontes', 'Malaguti']);
+const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa', 'CFMoto', 'Zontes', 'Malaguti', 'Triumph', 'Gas Gas']);
 const MACHINE_BRANDS = new Set([
   'JCB', 'Caterpillar', 'Bobcat', 'Komatsu', 'Volvo CE', 'Manitou', 'Linde', 'Still', 'Jungheinrich',
   'John Deere', 'Claas', 'New Holland', 'Case', 'Kubota', 'Zetor', 'Deutz-Fahr', 'Fendt', 'Massey Ferguson',
