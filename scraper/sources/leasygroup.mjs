@@ -74,9 +74,8 @@ function httpsGet(url, ca, redirects = 3) {
       const chunks = [];
       res.on('data', (c) => chunks.push(c));
       res.on('end', () => {
-        const body = Buffer.concat(chunks).toString('utf8');
         if (res.statusCode >= 400) reject(Object.assign(new Error(`HTTP ${res.statusCode} ${url}`), { status: res.statusCode }));
-        else resolve(body);
+        else resolve(Buffer.concat(chunks));
       });
     });
     req.on('timeout', () => req.destroy(new Error(`Timeout ${url}`)));
@@ -84,15 +83,23 @@ function httpsGet(url, ca, redirects = 3) {
   });
 }
 
-/** Returns a `get(url) -> html` function that works around the incomplete certificate chain if needed. */
+/**
+ * Returns `{ get(url) -> html, getBuffer(url) -> Buffer }` working around the incomplete certificate chain
+ * if needed.
+ */
 async function createGetter(http, log) {
   const probe = await probeTls();
-  if (probe.authorized) return (url) => http.text(url);
+  if (probe.authorized) {
+    return {
+      get: (url) => http.text(url),
+      getBuffer: async (url) => Buffer.from(await (await http.request(url, { headers: { Accept: 'image/*' } })).arrayBuffer()),
+    };
+  }
   if (probe.error !== 'UNABLE_TO_VERIFY_LEAF_SIGNATURE') throw new Error(`TLS: ${probe.error}`);
 
   log('serwer nie wysyła certyfikatu pośredniego – pobieram go z AIA');
   const ca = [...tls.rootCertificates, await fetchIssuerPem(http, probe.cert)];
-  return async (url) => {
+  const getBuffer = async (url) => {
     let err;
     for (let attempt = 0; attempt < 3; attempt++) {
       await sleep(attempt ? 2000 * attempt : 300);
@@ -105,6 +112,7 @@ async function createGetter(http, log) {
     }
     throw err;
   };
+  return { get: async (url) => (await getBuffer(url)).toString('utf8'), getBuffer };
 }
 
 /** "6 : 23 : 34" (days : hours : minutes left) -> Date */
@@ -159,8 +167,11 @@ export default {
   note:
     'Serwer nie wysyła certyfikatu pośredniego TLS – scraper dociąga go automatycznie (AIA). ' +
     'Data zakończenia wyliczana z licznika „Do końca” (dokładność do minuty).',
-  async scrape({ http, log, maxPages }) {
-    const get = await createGetter(http, log);
+  // Browsers that do not fetch the missing intermediate certificate cannot show images from this server.
+  mirrorImages: { maxNew: 300 },
+  async scrape({ http, log, maxPages, setImageFetcher }) {
+    const { get, getBuffer } = await createGetter(http, log);
+    setImageFetcher?.(getBuffer);
     const out = [];
     const seen = new Set();
     for (const cat of CATEGORIES) {

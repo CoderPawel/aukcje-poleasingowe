@@ -13,10 +13,12 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { createHttp } from './lib/http.mjs';
 import { normalizeVehicle } from './lib/normalize.mjs';
+import { mirrorThumbs, pruneThumbs } from './lib/thumbs.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const DATA_DIR = path.join(ROOT, 'site', 'data');
+const SITE_DIR = path.join(ROOT, 'site');
+const DATA_DIR = path.join(SITE_DIR, 'data');
 const SOURCES_DIR = path.join(__dirname, 'sources');
 
 const args = process.argv.slice(2);
@@ -65,14 +67,31 @@ async function runSource(source) {
   const log = (...a) => console.log(`[${source.id}]`, ...a);
   const seen = new Set();
   const vehicles = [];
+  let fetchImage = async (url) => Buffer.from(await (await http.request(url, { headers: { Accept: 'image/*' }, useCookies: false })).arrayBuffer());
+  const setImageFetcher = (fn) => (fetchImage = fn);
   try {
-    const raw = await withTimeout(source.scrape({ http, log, maxPages: MAX_PAGES }), SOURCE_TIMEOUT_MS, source.id);
+    const raw = await withTimeout(
+      source.scrape({ http, log, maxPages: MAX_PAGES, setImageFetcher }),
+      SOURCE_TIMEOUT_MS,
+      source.id,
+    );
     for (const r of raw || []) {
       if (!r || (!r.title && !r.brand)) continue;
       const v = normalizeVehicle(r, source);
       if (seen.has(v.id)) continue;
       seen.add(v.id);
       vehicles.push(v);
+    }
+    if (source.mirrorImages && vehicles.length) {
+      try {
+        await withTimeout(
+          mirrorThumbs(vehicles, { siteDir: SITE_DIR, sourceId: source.id, fetchImage, maxNew: source.mirrorImages.maxNew, log }),
+          SOURCE_TIMEOUT_MS,
+          `${source.id} (miniatury)`,
+        );
+      } catch (e) {
+        log(`miniatury: ${e.message}`);
+      }
     }
     log(`OK: ${vehicles.length} pojazdów w ${((Date.now() - started) / 1000).toFixed(1)}s`);
     return { source, vehicles, status: { ok: true, count: vehicles.length, durationMs: Date.now() - started } };
@@ -159,6 +178,9 @@ async function main() {
     for (const [id, list] of prevBySource) if (!ranIds.has(id)) all.push(...list);
     for (const [id, st] of prevStatus) if (!ranIds.has(id)) statuses.push(st);
   }
+
+  const pruned = await pruneThumbs(all, SITE_DIR);
+  if (pruned) console.log(`Usunięto ${pruned} nieużywanych miniatur.`);
 
   all.sort((a, b) => (a.brand || '').localeCompare(b.brand || '', 'pl') || (a.model || '').localeCompare(b.model || '', 'pl'));
   statuses.sort((a, b) => a.name.localeCompare(b.name, 'pl'));

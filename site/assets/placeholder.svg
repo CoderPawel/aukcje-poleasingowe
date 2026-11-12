@@ -5,5 +5,5 @@
     <path d="M140 116l14-24h92l14 24"/>
   </g>
   <g fill="#94a3b8"><circle cx="145" cy="160" r="9"/><circle cx="255" cy="160" r="9"/></g>
-  <text x="200" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#64748b">brak zdjęcia</text>
+  <text x="200" y="225" text-anchor="middle" font-family="system-ui,sans-serif" font-size="18" fill="#64748b">brak zdj&#281;cia</text>
 </svg>

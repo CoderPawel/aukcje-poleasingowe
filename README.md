@@ -30,6 +30,13 @@ Dane są pobierane automatycznie przez GitHub Actions (domyślnie co 4 godziny) 
 Portal eLicytacje KAS jest chroniony przez Imperva/Incapsula. Moduł wysyła tylko kilka zapytań do jego
 publicznego API (bez stron szczegółów), a gdy zabezpieczenie zwróci stronę weryfikacji zamiast danych,
 pomija portal w danym przebiegu i zostawia poprzednie oferty. Zabezpieczenie nie jest obchodzone.
+Oferty z tego portalu nie mają miniatur: Incapsula odrzuca zapytania o zdjęcia spoza samego portalu
+(także z przeglądarki odwiedzającego), więc karta pokazuje grafikę „zdjęcia w ogłoszeniu”.
+
+Miniatury z Leasy Group są kopiowane podczas aktualizacji (`scraper/lib/thumbs.mjs`, flaga
+`mirrorImages` w module źródła): serwer portalu nie wysyła certyfikatu pośredniego TLS i część przeglądarek
+nie wyświetla jego zdjęć. Kopie trafiają do `site/thumbs/` – poza gitem, w pamięci podręcznej GitHub Actions
+– i są publikowane razem ze stroną. Strona próbuje kolejno: kopii, oryginalnego adresu, grafiki zastępczej.
 
 Licytacje komornicze ([licytacje.komornik.pl](https://licytacje.komornik.pl/)) nie są pobierane: regulamin
 Portalu Obwieszczeń i Licytacji Komorniczych wprost zabrania używania scraperów i botów oraz tworzenia

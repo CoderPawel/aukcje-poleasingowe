@@ -42,6 +42,15 @@ jobs:
       - name: Testy
         run: npm test
 
+      # Thumbnail copies (scraper/lib/thumbs.mjs) are not committed; the newest cache is restored and a new
+      # one saved at the end of every run.
+      - name: Kopie miniatur
+        uses: actions/cache@v4
+        with:
+          path: site/thumbs
+          key: thumbs-${{ github.run_id }}
+          restore-keys: thumbs-
+
       - name: Pobierz oferty z portali aukcyjnych
         # A failing portal must not block publishing the others.
         continue-on-error: true

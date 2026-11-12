@@ -315,6 +315,7 @@ function timeLeft(end) {
 
 const tpl = $('#cardTpl');
 const PLACEHOLDER = 'assets/placeholder.svg';
+const PLACEHOLDER_NO_IMAGE = 'assets/placeholder-ogloszenie.svg';
 
 function renderCard(v, toks) {
   const node = tpl.content.firstElementChild.cloneNode(true);
@@ -322,11 +323,15 @@ function renderCard(v, toks) {
   const media = $('.card__media', node);
   media.href = v.url;
   const img = $('img', node);
-  img.src = v.image || PLACEHOLDER;
+  // Local copy first, then the portal's own URL, then the placeholder.
+  const sources = [v.thumb, v.image].filter(Boolean);
+  img.src = sources.shift() || PLACEHOLDER_NO_IMAGE;
   img.alt = v.title;
-  img.addEventListener('error', () => {
-    if (!img.src.endsWith(PLACEHOLDER)) img.src = PLACEHOLDER;
-  }, { once: true });
+  img.addEventListener('error', function next() {
+    const src = sources.shift();
+    if (!src) img.removeEventListener('error', next);
+    img.src = src || PLACEHOLDER;
+  });
   $('.card__type', node).textContent = TYPE_LABEL[v.type] || v.type;
 
   if (v._end) {
