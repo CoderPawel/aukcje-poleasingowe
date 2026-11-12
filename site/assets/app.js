@@ -1,3 +1,5 @@
+import { downloadIcs, hasCalendar, openCalendarMenu } from './calendar.js';
+
 const TYPES = [
   { id: 'osobowe', label: 'Osobowe', always: true },
   { id: 'dostawcze', label: 'Dostawcze', always: true },
@@ -380,6 +382,12 @@ function renderCard(v, toks) {
     renderFavCount();
     if (state.favOnly) update();
   });
+
+  if (hasCalendar(v)) {
+    const cal = $('.cal-btn', node);
+    cal.hidden = false;
+    cal.addEventListener('click', () => openCalendarMenu(cal, v));
+  }
   return node;
 }
 
@@ -623,6 +631,16 @@ function renderFavCount() {
   $('#favToggle').setAttribute('aria-pressed', String(state.favOnly));
 }
 
+let favCalendarList = [];
+function renderFavCalendar(list) {
+  favCalendarList = state.favOnly ? list.filter(hasCalendar) : [];
+  const box = $('#favCalendar');
+  box.hidden = !favCalendarList.length;
+  if (!favCalendarList.length) return;
+  const n = favCalendarList.length;
+  $('#favCalendarText').textContent = `Dodaj do kalendarza przypomnienia o ${n} ${plural(n, 'kończącej się licytacji', 'kończących się licytacjach', 'kończących się licytacjach')} z ulubionych`;
+}
+
 /* ---------- Main update ---------- */
 
 function update({ keepLimit = false } = {}) {
@@ -637,6 +655,7 @@ function update({ keepLimit = false } = {}) {
   renderSidebar(facets);
   renderActiveFilters();
   renderFavCount();
+  renderFavCalendar(list);
 
   $('#resultCount').textContent = fmtInt.format(list.length);
   $('#resultLabel').textContent = plural(list.length, 'pojazd', 'pojazdy', 'pojazdów');
@@ -751,6 +770,7 @@ function bindEvents() {
   $('#loadMore').addEventListener('click', loadMore);
   $('#resetFilters').addEventListener('click', resetFilters);
   $('#favToggle').addEventListener('click', () => { state.favOnly = !state.favOnly; update(); });
+  $('#favCalendarBtn').addEventListener('click', () => downloadIcs(favCalendarList, 'ulubione-licytacje.ics'));
   $('#themeToggle').addEventListener('click', () => {
     const dark = document.documentElement.dataset.theme
       ? document.documentElement.dataset.theme === 'dark'

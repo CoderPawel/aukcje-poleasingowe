@@ -172,6 +172,12 @@
 
       <div class="active-filters" id="activeFilters"></div>
 
+      <div class="fav-calendar" id="favCalendar" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#calendar" /></svg>
+        <span id="favCalendarText"></span>
+        <button type="button" class="btn ghost" id="favCalendarBtn">Pobierz plik .ics</button>
+      </div>
+
       <div id="output" class="output" data-view="grid">
         <div class="skeleton-grid" aria-hidden="true">
           <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
@@ -203,6 +209,9 @@
       <div class="card__body">
         <div class="card__head">
           <h3 class="card__title"><a target="_blank" rel="noopener noreferrer"></a></h3>
+          <button type="button" class="cal-btn" aria-haspopup="menu" aria-expanded="false" title="Dodaj przypomnienie do kalendarza" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#calendar" /></svg>
+          </button>
           <button type="button" class="fav-btn" aria-pressed="false" title="Dodaj do ulubionych">
             <svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#star" /></svg>
           </button>

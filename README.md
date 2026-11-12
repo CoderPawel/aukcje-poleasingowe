@@ -38,6 +38,9 @@ Aktualny stan każdego portalu (liczba ofert, ewentualny błąd) widać na stron
 - liczniki przy każdym filtrze (faceted search), aktywne filtry jako „pigułki”,
 - sortowanie: cena, rok, przebieg, koniec aukcji, ostatnio dodane, nazwa,
 - widok kafelków lub listy, tryb ciemny, ulubione (zapamiętywane w przeglądarce),
+- przypomnienie o końcu licytacji w kalendarzu: Google, Yahoo, Outlook.com lub plik `.ics`
+  (Apple, Outlook i inne; z alarmem 1 h i 15 min przed końcem) – dla pojedynczej oferty
+  albo zbiorczo dla wszystkich trwających licytacji z ulubionych,
 - stan filtrów zapisany w adresie URL – link do wyników można wysłać innej osobie,
 - responsywny układ (telefon / tablet / komputer).
 
