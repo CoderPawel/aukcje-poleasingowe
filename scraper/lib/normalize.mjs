@@ -35,7 +35,12 @@ const BRANDS = [
   ['Hyundai', ['hyundai', 'huyndai', 'hyundia']],
   ['Triumph', ['triumph']],
   ['Gas Gas', ['gas gas', 'gasgas']],
-  ['Infiniti', ['infiniti']],
+  ['Infiniti', ['infiniti', 'infinity']],
+  ['Daihatsu', ['daihatsu']],
+  ['Łada', ['łada', 'lada']],
+  ['Microcar', ['microcar']],
+  ['Aixam', ['aixam']],
+  ['Ligier', ['ligier']],
   ['Isuzu', ['isuzu']],
   ['Iveco', ['iveco']],
   ['Jaguar', ['jaguar']],
@@ -174,6 +179,24 @@ const BRANDS = [
   ['Haulotte', ['haulotte']],
   ['Genie', ['genie']],
   ['JLG', ['jlg']],
+  ['Romet', ['romet motors', 'romet']],
+  ['Junak', ['junak']],
+  ['Zipp', ['zipp']],
+  ['Barton', ['barton']],
+  ['Baotian', ['baotian']],
+  ['Jiajue', ['jiajue']],
+  ['MBK', ['mbk']],
+  ['Kymco', ['kymco']],
+  ['Blinkee', ['blinkee']],
+  ['Carnehl', ['carnehl']],
+  ['Rydwan', ['rydwan']],
+  ['FS Lublin', ['fs lublin', 'lublin']],
+  ['Polaris', ['polaris']],
+  ['Kove', ['kove']],
+  ['KinRoad', ['kinroad']],
+  ['Benda', ['benda']],
+  ['Dethleffs', ['dethleffs']],
+  ['Farmtrac', ['farmtrac']],
 ];
 
 const BRAND_ALIASES = BRANDS.flatMap(([name, aliases]) => aliases.map((a) => [a, name])).sort(
@@ -185,13 +208,17 @@ const TRAILER_BRANDS = new Set([
   'Krone', 'Schmitz Cargobull', 'Kögel', 'Wielton', 'Knapen', 'Fliegl', 'Kässbohrer', 'Schwarzmüller',
   'Lamberet', 'Chereau', 'Neptun', 'Temared', 'Niewiadów', 'Brenderup', 'Humbaur', 'Böckmann',
   'Bodex', 'Wolf', 'Faymonville', 'Goldhofer', 'Kempf', 'Feber', 'Kel-Berg', 'Sanok', 'CIMC', 'Langendorf',
-  'Blyss', 'Boro', 'Tank-Service',
+  'Blyss', 'Boro', 'Tank-Service', 'Carnehl', 'Rydwan', 'Dethleffs',
 ]);
-const MOTO_BRANDS = new Set(['Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa', 'CFMoto', 'Zontes', 'Malaguti', 'Triumph', 'Gas Gas']);
+const MOTO_BRANDS = new Set([
+  'Yamaha', 'Kawasaki', 'Ducati', 'Harley-Davidson', 'KTM', 'Piaggio', 'Vespa', 'CFMoto', 'Zontes', 'Malaguti',
+  'Triumph', 'Gas Gas', 'Romet', 'Junak', 'Zipp', 'Barton', 'Baotian', 'Jiajue', 'MBK', 'Kymco', 'Blinkee',
+  'Polaris', 'Kove', 'KinRoad', 'Benda',
+]);
 const MACHINE_BRANDS = new Set([
   'JCB', 'Caterpillar', 'Bobcat', 'Komatsu', 'Volvo CE', 'Manitou', 'Linde', 'Still', 'Jungheinrich',
   'John Deere', 'Claas', 'New Holland', 'Case', 'Kubota', 'Zetor', 'Deutz-Fahr', 'Fendt', 'Massey Ferguson',
-  'Ursus', 'Hyundai CE', 'Doosan', 'Liebherr', 'Takeuchi', 'Yanmar', 'Hitachi', 'Hyster', 'Merlo', 'Ausa',
+  'Ursus', 'Hyundai CE', 'Doosan', 'Liebherr', 'Takeuchi', 'Yanmar', 'Hitachi', 'Hyster', 'Merlo', 'Ausa', 'Farmtrac',
   'Wacker Neuson', 'Kramer', 'Sany', 'Haulotte', 'Genie', 'JLG', 'Pronar', 'Steyr', 'Kverneland', 'Holmer',
   'Bednar', 'Basak', 'Lemken', 'Amazone', 'Pöttinger', 'Sennebogen', 'Terex',
 ]);
@@ -200,7 +227,7 @@ const VAN_MODELS = [
   /\btransit\b/, /\btourneo custom\b/, /\bsprinter\b/, /\besprinter\b/, /\bcrafter\b/, /\becrafter\b/, /\bducato\b/,
   /\be-?ducato\b/, /\bboxer\b/, /\be-?boxer\b/, /\bjumper\b/, /\be-?jumper\b/, /\bmaster\b/, /\bmovano\b/,
   /\bvivaro\b/, /\btrafic\b/, /\bexpert\b/, /\be-?expert\b/, /\bjumpy\b/, /\be-?jumpy\b/, /\bproace\b(?!\s*city\s*verso)(?!\s*verso)/,
-  /\bdaily\b/, /\btransporter\b/, /\bt6\.1\b/, /\bt6\b(?!.*(multivan|caravelle|california))/, /\bcitan\b/,
+  /\bdaily\b/, /\blublin\b/, /\btransporter\b/, /\bt6\.1\b/, /\bt6\b(?!.*(multivan|caravelle|california))/, /\bcitan\b/,
   /\bvito\b(?!.*tourer)/, /\bevito\b(?!.*tourer)/, /\bpartner\b/, /\bkangoo\b(?!.*(combi|zen|life|intens))/,
   /\bdoblo\b(?!.*(combi|lounge|easy))/, /\bcombo\b(?!.*life)/, /\bfiorino\b/, /\bnemo\b/, /\bbipper\b/,
   /\bdokker\b(?!.*stepway)/, /\bexpress\b/, /\btalento\b/, /\bscudo\b/, /\bnv200\b/, /\bnv250\b/, /\bnv300\b/,

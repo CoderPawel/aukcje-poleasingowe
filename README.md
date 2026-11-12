@@ -25,6 +25,15 @@ Dane są pobierane automatycznie przez GitHub Actions (domyślnie co 4 godziny) 
 | [PKO Leasing – aukcje](https://aukcje.pkoleasing.pl/) | `scraper/sources/pkoleasing.mjs` |
 | [Leasy Group – aukcje](https://aukcje.leasygroup.pl/) | `scraper/sources/leasygroup.mjs` |
 | [EFL – aukcje](https://aukcje.efl.com.pl/) | `scraper/sources/efl.mjs` |
+| [eLicytacje KAS – licytacje urzędów skarbowych](https://elicytacje.mf.gov.pl/auction/) | `scraper/sources/elicytacje-kas.mjs` |
+
+Portal eLicytacje KAS jest chroniony przez Imperva/Incapsula. Moduł wysyła tylko kilka zapytań do jego
+publicznego API (bez stron szczegółów), a gdy zabezpieczenie zwróci stronę weryfikacji zamiast danych,
+pomija portal w danym przebiegu i zostawia poprzednie oferty. Zabezpieczenie nie jest obchodzone.
+
+Licytacje komornicze ([licytacje.komornik.pl](https://licytacje.komornik.pl/)) nie są pobierane: regulamin
+Portalu Obwieszczeń i Licytacji Komorniczych wprost zabrania używania scraperów i botów oraz tworzenia
+baz danych i serwisów pośredniczących opartych na jego danych.
 
 Aktualny stan każdego portalu (liczba ofert, ewentualny błąd) widać na stronie w panelu
 **Filtry → Status portali** oraz w pliku `site/data/sources.json`.
