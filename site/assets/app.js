@@ -126,8 +126,33 @@ function modelFamily(v) {
   return capitalize(first);
 }
 
+/** Other names people use for a portal; its name and web address are always searchable. */
+const SOURCE_ALIASES = {
+  arval: 'Arval Auto Select',
+  cararena: 'Car Arena',
+  carefleet: 'Care Fleet',
+  dawro: 'Dom Aukcyjny Dawro',
+  'elicytacje-kas': 'e-Licytacje Krajowa Administracja Skarbowa urząd skarbowy',
+  pkoleasing: 'PKO BP',
+};
+
+const hostOf = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
+
+/** Searchable text describing where an offer comes from: portal name, aliases, portal and offer hosts. */
+function sourceSearchText(v, byId) {
+  const s = byId.get(v.source);
+  return [v.sourceName, s?.name, SOURCE_ALIASES[v.source], hostOf(s?.url), hostOf(v.url)].filter(Boolean).join(' ');
+}
+
 function prepare(list) {
   const now = Date.now();
+  const byId = new Map(sources.map((s) => [s.id, s]));
   return list
     .map((v) => {
       const end = v.endDate ? Date.parse(v.endDate) : null;
@@ -138,7 +163,7 @@ function prepare(list) {
         _seen: v.firstSeen ? Date.parse(v.firstSeen) : 0,
         _model: fam,
         _modelKey: `${v.brand}|${fam}`,
-        _search: fold([v.title, v.brand, v.model, v.version, v.location, v.vin, v.sourceName, TYPE_LABEL[v.type], v.fuel, v.bodyType, v.year].filter(Boolean).join(' ')),
+        _search: fold([v.title, v.brand, v.model, v.version, v.location, v.vin, sourceSearchText(v, byId), TYPE_LABEL[v.type], v.fuel, v.bodyType, v.year].filter(Boolean).join(' ')),
         _titleFold: fold(v.title),
       };
     })
@@ -153,17 +178,33 @@ async function loadData() {
   if (!vRes.ok) throw new Error(`Nie udało się pobrać danych (${vRes.status})`);
   const vData = await vRes.json();
   const sData = sRes && sRes.ok ? await sRes.json() : { sources: [] };
-  vehicles = prepare(vData.vehicles || []);
   sources = sData.sources || [];
+  vehicles = prepare(vData.vehicles || []);
   const updated = vData.generatedAt ? new Date(vData.generatedAt) : null;
   $('#updatedAt').textContent = updated ? `· aktualizacja ${fmtDate.format(updated)}` : '';
 }
 
 /* ---------- Filtering ---------- */
 
+/** Strips URL decoration and trailing punctuation, so "https://www.mauto.pl/" and "mAuto," still match. */
+const cleanToken = (t) =>
+  t.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/+$/, '').replace(/^[.:!?"'()]+|[.:!?"'()]+$/g, '');
+
+/**
+ * Search tokens for highlighting and relevance. `groups` holds the comma/semicolon-separated
+ * alternatives ("mAuto, Dawro") – a vehicle matches when it contains every token of any group.
+ */
 function tokens() {
-  return fold(state.q).split(/\s+/).filter(Boolean);
+  const groups = fold(state.q)
+    .split(/[,;|]/)
+    .map((part) => part.split(/\s+/).map(cleanToken).filter(Boolean))
+    .filter((g) => g.length);
+  const toks = [...new Set(groups.flat())];
+  toks.groups = groups;
+  return toks;
 }
+
+const matchesText = (v, toks) => !toks.groups?.length || toks.groups.some((g) => g.every((t) => v._search.includes(t)));
 
 /** Checks all filters except the one named in `skip` (used for faceted counts). */
 function matches(v, toks, skip) {
@@ -185,8 +226,7 @@ function matches(v, toks, skip) {
     const limit = Date.now() + +state.ending * 3600 * 1000;
     if (!v._end || v._end > limit) return false;
   }
-  for (const t of toks) if (!v._search.includes(t)) return false;
-  return true;
+  return matchesText(v, toks);
 }
 
 function countBy(list, keyFn) {
