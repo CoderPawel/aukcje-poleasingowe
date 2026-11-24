@@ -52,11 +52,13 @@ function cityFromAddress(address) {
 }
 
 /**
- * The card only shows a relative countdown and the end day, e.g. "6 godzin (2026-10-22)".
- * Within the last day the countdown gives a closer estimate than the bare date.
+ * Current cards show the exact end, e.g. "za 13 minut (24-11-2026 10:00)". Older ones only had a
+ * countdown and the end day ("6 godzin (2026-10-22)"); within the last day the countdown is closer.
  */
 function parseEnd(text) {
   const t = clean(text);
+  const exact = t.match(/\((\d{2}-\d{2}-\d{4} \d{1,2}:\d{2})\)/);
+  if (exact) return exact[1];
   const day = t.match(/\((\d{4})-(\d{2})-(\d{2})\)/);
   const rel = t.match(/(\d+)\s*(godz|min)/i);
   if (rel && !/dni|dzień|tydz/i.test(t)) {
@@ -79,20 +81,26 @@ function parseCard($, el, listing) {
     if (key) lines[key] = clean($(line).find('.line-value').text());
   });
 
-  // Top badges: year, fuel and mileage in no fixed order.
-  let year, fuel, mileage;
+  // Top badges in no fixed order: year, power ("204 KM"), mileage ("71111 km") and fuel.
+  let year, fuel, mileage, power;
   card.find('.filter-labels .filter-label').each((_, b) => {
     const v = clean($(b).text());
     if (/^\d{4}$/.test(v)) year ??= v;
-    else if (/\d\s*km$/i.test(v)) mileage ??= v;
+    else if (/\d\s*KM$/.test(v)) power ??= v;
+    else if (/\d\s*km$/.test(v)) mileage ??= v;
     else if (v && !/\d/.test(v)) fuel ??= v;
   });
   if (!mileage && /km$/i.test(lines['przebieg'] || '')) mileage = lines['przebieg'];
 
   const priceEl = card.find('.listing-price').first().clone();
   priceEl.find('.listing-price-currency').remove();
-  const image = (card.find('.image').attr('style') || '').match(/url\(['"]?([^'")]+)['"]?\)/)?.[1];
-  const location = lines['lokalizacja'];
+  // The first cards carry the photo in data-bg-image, lazy-loaded ones in data-lazy-bg.
+  const imageEl = card.find('.image').first();
+  const image =
+    imageEl.attr('data-bg-image') ||
+    imageEl.attr('data-lazy-bg') ||
+    (imageEl.attr('style') || '').match(/url\(['"]?([^'")]+)['"]?\)/)?.[1];
+  const location = clean(card.find('.otter-card__location strong').first().text()) || lines['lokalizacja'];
   const typ = lines['typ'];
   const bodySuffix =
     typ && title.toLowerCase().endsWith(' ' + typ.toLowerCase())
@@ -115,13 +123,13 @@ function parseCard($, el, listing) {
     mileage,
     fuel,
     gearbox: /\b(aut|automat|dsg|s-tronic|steptronic|tiptronic|cvt)\b/i.test(title) ? 'Automatyczna' : undefined,
-    powerKm: lines['moc silnika'],
+    powerKm: power || lines['moc silnika'],
     price: clean(priceEl.text()),
     priceGross: false,
     priceLabel: clean(card.find('.listing-price-label').first().text()) || 'Aktualna cena',
     saleType: 'Licytacja',
     location: location ? cityFromAddress(location) : undefined,
-    endDate: parseEnd(card.find('.listing-box-time').first().text()),
+    endDate: parseEnd(card.find('.otter-card__time, .listing-box-time').first().text()),
     image,
   };
 }
